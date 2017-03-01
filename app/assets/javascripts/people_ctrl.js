@@ -1,27 +1,15 @@
 (function(){
   "use strict";
 
-  angular.module("app").controller("peopleCtrl", function($scope){
+  angular.module("app").controller("peopleCtrl", function($scope, $http){
     $scope.message = "hello, world";
-    $scope.people = [
-      {
-        name: "wen",
-        bio: "awesome person/coder",
-        bioVisible: false
-      },
-      {
-        name: "annie",
-        bio: "second awesome person/coder",
-        bioVisible: false
-      },
-      {
-        name: "jenilee",
-        bio: "most awesome person/coder",
-        bioVisible: false
-      }
-    ];
 
-    $scope.peopleCount = $scope.people.length;
+    $scope.setup = function() {
+      $http.get("/api/v1/people.json").then(function(response){
+        $scope.people = response.data;
+        $scope.peopleCount = $scope.people.length;
+      });
+    };
 
     $scope.addPerson = function(name, bio){
       var newPerson = {
