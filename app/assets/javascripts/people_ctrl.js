@@ -12,13 +12,15 @@
     };
 
     $scope.addPerson = function(name, bio){
-      var newPerson = {
+      var params = {
         name: name,
         bio: bio,
         bioVisible: false
       };
-      $scope.people.push(newPerson);
-      $scope.peopleCount = $scope.people.length;
+      $http.post("/api/v1/people.json", params).then(function(response){
+        $scope.people.push(params);
+        $scope.peopleCount = $scope.people.length;
+      });
     };
 
     $scope.deletePerson = function(index){
