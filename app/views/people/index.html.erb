@@ -9,6 +9,12 @@
       <button ng-click="deletePerson($index)">Delete</button>
     </div>
 
+    
+    <h2>Errors:</h2>
+    <ul>
+      <li ng-repeat="error in errors">{{error}}</li>
+    </ul>
+
     <h3>New Person:</h3>
     Person Name: <input ng-model="newPersonName"><br>
     Person Bio: <input ng-model="newPersonBio"><br>

@@ -4,10 +4,15 @@ class Api::V1::PeopleController < ApplicationController
     render "index.json.jbuilder"
   end
   def create
-    person = Person.create(
+    person = Person.new(
       name: params[:name],
       bio: params[:bio]
       )
-    redirect_to "/"
+    if person.save
+
+    else
+      render json: { errors: person.errors.full_messages}, status: 422
+    end
+    
   end
 end
