@@ -38,6 +38,21 @@
       person.bioVisible = !person.bioVisible;
     };
 
+    $scope.toggleOrder = function(attribute){
+      //order is ascending when descending is false
+      //order is descending when descending is true
+
+      //if passed in attribute is the same as orderAttribute 
+      if(attribute != $scope.orderAttribute){
+        $scope.descending = false; //ascending order
+      }
+      else {
+        $scope.descending = !$scope.descending; //the opposite
+      }
+
+      $scope.orderAttribute = attribute; //string 'name'
+    };
+
 
   });
 }());

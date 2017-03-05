@@ -3,15 +3,20 @@
     
     <p>People Count: {{ peopleCount }}</p>
 
+    <button ng-click="toggleOrder('name')">Order by Name</button>
+    <button ng-click="toggleOrder('id')">Order by Id</button>
+    <p>orderAttribute: {{orderAttribute}}</p>
+    <p>Desceding boolean: {{descending}}</p>
+
     <input ng-model="nameFilter">
-    <div ng-repeat="person in people | filter: {name: nameFilter}">
+    <div ng-repeat="person in people | filter: nameFilter | orderBy: orderAttribute:descending">
       <h3 ng-click="toggleBio(person)">{{ person.name}}</h3>
       <p ng-class="{strike: person.bioVisible}" ng-if="person.bioVisible">{{ person.bio }}</p>
       <button ng-click="deletePerson(person)">Delete</button>
     </div>
 
     
-    <h2>Errors:</h2>
+    <h3>Errors:</h3>
     <ul>
       <li ng-repeat="error in errors">{{error}}</li>
     </ul>
