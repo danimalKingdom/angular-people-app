@@ -7,7 +7,6 @@
     $scope.setup = function() {
       $http.get("/api/v1/people.json").then(function(response){
         $scope.people = response.data;
-        $scope.peopleCount = $scope.people.length;
       });
     };
 
@@ -19,7 +18,6 @@
       };
       $http.post("/api/v1/people.json", params).then(function(response){
         $scope.people.push(params);
-        $scope.peopleCount = $scope.people.length;
       }, function(error) {
         console.log(error);
         $scope.errors = error.data.errors;
@@ -51,8 +49,17 @@
       }
 
       $scope.orderAttribute = attribute; //string 'name'
+      getSortIcon($scope.orderA);
     };
 
+    $scope.getSortIcon = function(inputOrderAttribute) {
+      if(inputOrderAttribute == $scope.orderAttribute){
+        $scope.sortIcon =  '^';
+      } 
+      else {
+        $scope.sortIcon = 'v';
+      }
+    };
 
   });
 }());
