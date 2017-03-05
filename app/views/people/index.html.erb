@@ -3,7 +3,8 @@
     
     <p>People Count: {{ peopleCount }}</p>
 
-    <div ng-repeat="person in people | filter: nameFilter">
+    <input ng-model="nameFilter">
+    <div ng-repeat="person in people | filter: {name: nameFilter}">
       <h3 ng-click="toggleBio(person)">{{ person.name}}</h3>
       <p ng-class="{strike: person.bioVisible}" ng-if="person.bioVisible">{{ person.bio }}</p>
       <button ng-click="deletePerson(person)">Delete</button>
