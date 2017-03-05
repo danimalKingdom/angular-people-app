@@ -3,10 +3,10 @@
     
     <p>People Count: {{ peopleCount }}</p>
 
-    <div ng-repeat="person in people">
-      <h3 ng-click="toggleBio(person)">{{ person.name }}</h3>
+    <div ng-repeat="person in people | filter: nameFilter">
+      <h3 ng-click="toggleBio(person)">{{ person.name}}</h3>
       <p ng-class="{strike: person.bioVisible}" ng-if="person.bioVisible">{{ person.bio }}</p>
-      <button ng-click="deletePerson($index)">Delete</button>
+      <button ng-click="deletePerson(person)">Delete</button>
     </div>
 
     
