@@ -49,17 +49,19 @@
       }
 
       $scope.orderAttribute = attribute; //string 'name'
-      getSortIcon($scope.orderA);
+      $scope.getSortIcon();
     };
 
-    $scope.getSortIcon = function(inputOrderAttribute) {
-      if(inputOrderAttribute == $scope.orderAttribute){
-        $scope.sortIcon =  '^';
+    $scope.getSortIcon = function() {
+      if($scope.descending){
+        $scope.sortIcon =  'v';
       } 
       else {
-        $scope.sortIcon = 'v';
+        $scope.sortIcon = '^';
       }
     };
+
+    window.scope = $scope;
 
   });
 }());
